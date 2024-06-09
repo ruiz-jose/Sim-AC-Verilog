@@ -1,41 +1,42 @@
 #! /usr/bin/vvp
-:ivl_version "10.3 (stable)";
+:ivl_version "11.0 (stable)";
 :ivl_delay_selection "TYPICAL";
 :vpi_time_precision + 0;
-:vpi_module "system";
-:vpi_module "vhdl_sys";
-:vpi_module "v2005_math";
-:vpi_module "va_math";
-S_0x5f6fbd901730 .scope module, "alu_tb" "alu_tb" 2 3;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5654fbf8b770 .scope module, "alu_tb" "alu_tb" 2 3;
  .timescale 0 0;
-v0x5f6fbd91a8b0_0 .net "fc", 0 0, v0x5f6fbd8ca110_0;  1 drivers
-v0x5f6fbd91a970_0 .net "fz", 0 0, v0x5f6fbd91a380_0;  1 drivers
-v0x5f6fbd91aa40_0 .var "op", 2 0;
-v0x5f6fbd91ab40_0 .net "r", 7 0, v0x5f6fbd91a500_0;  1 drivers
-v0x5f6fbd91ac10_0 .var/i "test_idx", 31 0;
-v0x5f6fbd91ad00_0 .var "x", 7 0;
-v0x5f6fbd91ada0_0 .var "y", 7 0;
-S_0x5f6fbd9018b0 .scope module, "UUT" "alu" 2 14, 3 15 0, S_0x5f6fbd901730;
+v0x5654fbfb5e50_0 .net "fc", 0 0, v0x5654fbf9be80_0;  1 drivers
+v0x5654fbfb5f10_0 .net "fz", 0 0, v0x5654fbfb5920_0;  1 drivers
+v0x5654fbfb5fe0_0 .var "op", 2 0;
+v0x5654fbfb60e0_0 .net "r", 7 0, v0x5654fbfb5aa0_0;  1 drivers
+v0x5654fbfb61b0_0 .var/i "test_idx", 31 0;
+v0x5654fbfb62a0_0 .var "x", 7 0;
+v0x5654fbfb6340_0 .var "y", 7 0;
+S_0x5654fbf9bc70 .scope module, "UUT" "alu" 2 14, 3 15 0, S_0x5654fbf8b770;
  .timescale 0 0;
-    .port_info 0 /INPUT 8 "y_i"
-    .port_info 1 /INPUT 8 "x_i"
-    .port_info 2 /INPUT 3 "op_i"
-    .port_info 3 /OUTPUT 8 "r_o"
-    .port_info 4 /OUTPUT 1 "fz_o"
-    .port_info 5 /OUTPUT 1 "fc_o"
-v0x5f6fbd8ca110_0 .var "fc_o", 0 0;
-v0x5f6fbd91a380_0 .var "fz_o", 0 0;
-v0x5f6fbd91a440_0 .net "op_i", 2 0, v0x5f6fbd91aa40_0;  1 drivers
-v0x5f6fbd91a500_0 .var "r_o", 7 0;
-v0x5f6fbd91a5e0_0 .net "x_i", 7 0, v0x5f6fbd91ad00_0;  1 drivers
-v0x5f6fbd91a710_0 .net "y_i", 7 0, v0x5f6fbd91ada0_0;  1 drivers
-E_0x5f6fbd8ffcf0 .event edge, v0x5f6fbd91a440_0, v0x5f6fbd91a710_0, v0x5f6fbd91a5e0_0, v0x5f6fbd91a500_0;
-    .scope S_0x5f6fbd9018b0;
+    .port_info 0 /INPUT 8 "y_i";
+    .port_info 1 /INPUT 8 "x_i";
+    .port_info 2 /INPUT 3 "op_i";
+    .port_info 3 /OUTPUT 8 "r_o";
+    .port_info 4 /OUTPUT 1 "fz_o";
+    .port_info 5 /OUTPUT 1 "fc_o";
+v0x5654fbf9be80_0 .var "fc_o", 0 0;
+v0x5654fbfb5920_0 .var "fz_o", 0 0;
+v0x5654fbfb59e0_0 .net "op_i", 2 0, v0x5654fbfb5fe0_0;  1 drivers
+v0x5654fbfb5aa0_0 .var "r_o", 7 0;
+v0x5654fbfb5b80_0 .net "x_i", 7 0, v0x5654fbfb62a0_0;  1 drivers
+v0x5654fbfb5cb0_0 .net "y_i", 7 0, v0x5654fbfb6340_0;  1 drivers
+E_0x5654fbf61420 .event edge, v0x5654fbfb59e0_0, v0x5654fbfb5cb0_0, v0x5654fbfb5b80_0, v0x5654fbfb5aa0_0;
+    .scope S_0x5654fbf9bc70;
 T_0 ;
-    %wait E_0x5f6fbd8ffcf0;
+    %wait E_0x5654fbf61420;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x5f6fbd8ca110_0, 0, 1;
-    %load/vec4 v0x5f6fbd91a440_0;
+    %store/vec4 v0x5654fbf9be80_0, 0, 1;
+    %load/vec4 v0x5654fbfb59e0_0;
     %dup/vec4;
     %pushi/vec4 0, 0, 3;
     %cmp/u;
@@ -46,28 +47,28 @@ T_0 ;
     %jmp/1 T_0.1, 6;
     %jmp T_0.2;
 T_0.0 ;
-    %load/vec4 v0x5f6fbd91a710_0;
+    %load/vec4 v0x5654fbfb5cb0_0;
     %pad/u 9;
-    %load/vec4 v0x5f6fbd91a5e0_0;
+    %load/vec4 v0x5654fbfb5b80_0;
     %pad/u 9;
     %add;
     %split/vec4 8;
-    %store/vec4 v0x5f6fbd91a500_0, 0, 8;
-    %store/vec4 v0x5f6fbd8ca110_0, 0, 1;
+    %store/vec4 v0x5654fbfb5aa0_0, 0, 8;
+    %store/vec4 v0x5654fbf9be80_0, 0, 1;
     %jmp T_0.2;
 T_0.1 ;
-    %load/vec4 v0x5f6fbd91a710_0;
+    %load/vec4 v0x5654fbfb5cb0_0;
     %pad/u 9;
-    %load/vec4 v0x5f6fbd91a5e0_0;
+    %load/vec4 v0x5654fbfb5b80_0;
     %pad/u 9;
     %sub;
     %split/vec4 8;
-    %store/vec4 v0x5f6fbd91a500_0, 0, 8;
-    %store/vec4 v0x5f6fbd8ca110_0, 0, 1;
+    %store/vec4 v0x5654fbfb5aa0_0, 0, 8;
+    %store/vec4 v0x5654fbf9be80_0, 0, 1;
     %jmp T_0.2;
 T_0.2 ;
     %pop/vec4 1;
-    %load/vec4 v0x5f6fbd91a500_0;
+    %load/vec4 v0x5654fbfb5aa0_0;
     %cmpi/e 0, 0, 8;
     %flag_mov 8, 4;
     %jmp/0 T_0.3, 8;
@@ -79,77 +80,81 @@ T_0.3 ; End of true expr.
  ; End of false expr.
     %blend;
 T_0.4;
-    %store/vec4 v0x5f6fbd91a380_0, 0, 1;
+    %store/vec4 v0x5654fbfb5920_0, 0, 1;
     %jmp T_0;
     .thread T_0, $push;
-    .scope S_0x5f6fbd901730;
+    .scope S_0x5654fbf8b770;
 T_1 ;
     %pushi/vec4 0, 0, 8;
-    %store/vec4 v0x5f6fbd91ad00_0, 0, 8;
+    %store/vec4 v0x5654fbfb62a0_0, 0, 8;
     %pushi/vec4 0, 0, 8;
-    %store/vec4 v0x5f6fbd91ada0_0, 0, 8;
+    %store/vec4 v0x5654fbfb6340_0, 0, 8;
     %pushi/vec4 0, 0, 3;
-    %store/vec4 v0x5f6fbd91aa40_0, 0, 3;
+    %store/vec4 v0x5654fbfb5fe0_0, 0, 3;
     %pushi/vec4 0, 0, 32;
-    %store/vec4 v0x5f6fbd91ac10_0, 0, 32;
+    %store/vec4 v0x5654fbfb61b0_0, 0, 32;
     %end;
     .thread T_1;
-    .scope S_0x5f6fbd901730;
+    .scope S_0x5654fbf8b770;
 T_2 ;
     %vpi_call 2 20 "$dumpfile", "bin/alu.vcd" {0 0 0};
-    %vpi_call 2 21 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5f6fbd901730 {0 0 0};
+    %vpi_call 2 21 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5654fbf8b770 {0 0 0};
     %vpi_call 2 24 "$display", "-- Inicia Simulaci\303\263n --" {0 0 0};
     %pushi/vec4 0, 0, 3;
-    %store/vec4 v0x5f6fbd91aa40_0, 0, 3;
+    %store/vec4 v0x5654fbfb5fe0_0, 0, 3;
     %pushi/vec4 1, 0, 8;
-    %store/vec4 v0x5f6fbd91ad00_0, 0, 8;
+    %store/vec4 v0x5654fbfb62a0_0, 0, 8;
     %pushi/vec4 1, 0, 8;
-    %store/vec4 v0x5f6fbd91ada0_0, 0, 8;
+    %store/vec4 v0x5654fbfb6340_0, 0, 8;
     %delay 25, 0;
-    %load/vec4 v0x5f6fbd91ac10_0;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5654fbfb61b0_0;
     %pushi/vec4 1, 0, 32;
     %add;
-    %store/vec4 v0x5f6fbd91ac10_0, 0, 32;
-    %vpi_call 2 31 "$display", "Resultado %d ADD %d : %d", v0x5f6fbd91ad00_0, v0x5f6fbd91ada0_0, v0x5f6fbd91ab40_0 {0 0 0};
+    %store/vec4 v0x5654fbfb61b0_0, 0, 32;
+    %vpi_call 2 31 "$display", "Resultado %d ADD %d : %d", v0x5654fbfb62a0_0, v0x5654fbfb6340_0, v0x5654fbfb60e0_0 {0 0 0};
     %vpi_call 2 32 "$display", "--" {0 0 0};
     %pushi/vec4 1, 0, 3;
-    %store/vec4 v0x5f6fbd91aa40_0, 0, 3;
+    %store/vec4 v0x5654fbfb5fe0_0, 0, 3;
     %pushi/vec4 5, 0, 8;
-    %store/vec4 v0x5f6fbd91ad00_0, 0, 8;
+    %store/vec4 v0x5654fbfb62a0_0, 0, 8;
     %pushi/vec4 2, 0, 8;
-    %store/vec4 v0x5f6fbd91ada0_0, 0, 8;
+    %store/vec4 v0x5654fbfb6340_0, 0, 8;
     %delay 25, 0;
-    %load/vec4 v0x5f6fbd91ac10_0;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5654fbfb61b0_0;
     %pushi/vec4 1, 0, 32;
     %add;
-    %store/vec4 v0x5f6fbd91ac10_0, 0, 32;
-    %vpi_call 2 39 "$display", "Resultado %d SUB %d : %d", v0x5f6fbd91ad00_0, v0x5f6fbd91ada0_0, v0x5f6fbd91ab40_0 {0 0 0};
+    %store/vec4 v0x5654fbfb61b0_0, 0, 32;
+    %vpi_call 2 39 "$display", "Resultado %d SUB %d : %d", v0x5654fbfb62a0_0, v0x5654fbfb6340_0, v0x5654fbfb60e0_0 {0 0 0};
     %vpi_call 2 40 "$display", "--" {0 0 0};
     %pushi/vec4 1, 0, 3;
-    %store/vec4 v0x5f6fbd91aa40_0, 0, 3;
+    %store/vec4 v0x5654fbfb5fe0_0, 0, 3;
     %pushi/vec4 3, 0, 8;
-    %store/vec4 v0x5f6fbd91ad00_0, 0, 8;
+    %store/vec4 v0x5654fbfb62a0_0, 0, 8;
     %pushi/vec4 3, 0, 8;
-    %store/vec4 v0x5f6fbd91ada0_0, 0, 8;
+    %store/vec4 v0x5654fbfb6340_0, 0, 8;
     %delay 25, 0;
-    %load/vec4 v0x5f6fbd91ac10_0;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5654fbfb61b0_0;
     %pushi/vec4 1, 0, 32;
     %add;
-    %store/vec4 v0x5f6fbd91ac10_0, 0, 32;
-    %vpi_call 2 47 "$display", "Resultado %d SUB %d : %d  zero: %d", v0x5f6fbd91ad00_0, v0x5f6fbd91ada0_0, v0x5f6fbd91ab40_0, v0x5f6fbd91a970_0 {0 0 0};
+    %store/vec4 v0x5654fbfb61b0_0, 0, 32;
+    %vpi_call 2 47 "$display", "Resultado %d SUB %d : %d  zero: %d", v0x5654fbfb62a0_0, v0x5654fbfb6340_0, v0x5654fbfb60e0_0, v0x5654fbfb5f10_0 {0 0 0};
     %vpi_call 2 48 "$display", "--" {0 0 0};
     %pushi/vec4 1, 0, 3;
-    %store/vec4 v0x5f6fbd91aa40_0, 0, 3;
+    %store/vec4 v0x5654fbfb5fe0_0, 0, 3;
     %pushi/vec4 1, 0, 8;
-    %store/vec4 v0x5f6fbd91ad00_0, 0, 8;
+    %store/vec4 v0x5654fbfb62a0_0, 0, 8;
     %pushi/vec4 4, 0, 8;
-    %store/vec4 v0x5f6fbd91ada0_0, 0, 8;
+    %store/vec4 v0x5654fbfb6340_0, 0, 8;
     %delay 25, 0;
-    %load/vec4 v0x5f6fbd91ac10_0;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5654fbfb61b0_0;
     %pushi/vec4 1, 0, 32;
     %add;
-    %store/vec4 v0x5f6fbd91ac10_0, 0, 32;
-    %vpi_call 2 54 "$display", "Resultado %d SUB %d : %d  carry: %d", v0x5f6fbd91ad00_0, v0x5f6fbd91ada0_0, v0x5f6fbd91ab40_0, v0x5f6fbd91a8b0_0 {0 0 0};
+    %store/vec4 v0x5654fbfb61b0_0, 0, 32;
+    %vpi_call 2 54 "$display", "Resultado %d SUB %d : %d  carry: %d", v0x5654fbfb62a0_0, v0x5654fbfb6340_0, v0x5654fbfb60e0_0, v0x5654fbfb5e50_0 {0 0 0};
     %vpi_call 2 55 "$display", "-- Testbench completed --" {0 0 0};
     %vpi_call 2 56 "$finish" {0 0 0};
     %end;
