@@ -52,6 +52,7 @@ module alu_tb;
     y = 8'b00000100;    
     #25; test_idx++;
     $display("Resultado %d SUB %d : %d  carry: %d", x,y,r, fc);
+    $display("--");
     $display("-- Testbench completed --");
     $finish;
  

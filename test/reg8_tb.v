@@ -22,13 +22,21 @@ module reg8_tb;
 
     // d should be saved to q
     wen = 1'b1;
-    d = 8'b11001100;
+    d = 8'b11001100;  // CC o 204
     #25; test_idx++;
+    $display("Registro AC= %d ", q);
 
     // d should not be saved to q
     wen = 1'b0;
-    d = 8'b11111111;
+    d = 8'b11111111;  // FF o 255
     #25; test_idx++;
+    $display("Registro AC= %d ", q);
+
+    // d should not be saved to q
+    wen = 1'b1;
+    d = 8'b11111111;  // FF o 255
+    #25; test_idx++;
+    $display("Registro AC= %d ", q);
 
     $finish;
     $display("Testbench completed");

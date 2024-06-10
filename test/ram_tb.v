@@ -52,7 +52,7 @@ module ram_tb;
     #25; test_idx++;
 
     $finish;
-    $display("Testbench completed");
+    $display("-- Testbench completed --");
   end
 
 endmodule

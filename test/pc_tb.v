@@ -24,34 +24,51 @@ module pc_tb;
     $dumpfile("bin/pc.vcd");
     $dumpvars(0, pc_tb);
 
+    // Inicio de Señales
+    $display("-- Inicia Simulación --");
+
     // reset
-    //rst = 1'b1;
-   // #25; test_idx++;
+    rst = 1'b1;
+    #25; test_idx++;
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
 
     // inc
     rst = 1'b0;
     #25; test_idx++;
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    
+    // inc
+    #25; test_idx++;
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+
+    // inc
+    rst = 1'b0;
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
 
     // jump
     jmp_en = 1'b1;
-    jmp_addr = 5'b00011001;  //25
+    jmp_addr = 5'b11001;  //19h
     #25; test_idx++;  // addr + 1
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
 
     // reset
-    jmp_en = 1'b0;
     rst = 1'b1;
     #25; test_idx++;
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
 
     // inc
     rst = 1'b0;
     #25; test_idx++;
+    $display("%d . Registro PC= %d ",test_idx, curr_addr);
 
     // reset
     rst = 1'b1;
     #25; test_idx++;
+    $display("%d. Registro PC= %d ",test_idx, curr_addr);
 
     $finish;
-    $display("Testbench completed");
+    $display("-- Testbench completed --");
+
   end
 
 endmodule

@@ -1,0 +1,153 @@
+$date
+	Mon Jun 10 16:50:04 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module pc_tb $end
+$var wire 5 ! curr_addr [4:0] $end
+$var reg 1 " clk $end
+$var reg 5 # jmp_addr [4:0] $end
+$var reg 1 $ jmp_en $end
+$var reg 1 % rst $end
+$var integer 32 & test_idx [31:0] $end
+$scope module UUT $end
+$var wire 1 " clk_i $end
+$var wire 5 ' jmp_addr_i [4:0] $end
+$var wire 1 $ jmp_en_i $end
+$var wire 1 % rst_i $end
+$var reg 5 ( addr_o [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 (
+b0 '
+b0 &
+1%
+0$
+b0 #
+1"
+b0 !
+$end
+#5
+0"
+#10
+1"
+#15
+0"
+#20
+1"
+#25
+0"
+0%
+b1 &
+#30
+b1 !
+b1 (
+1"
+#35
+0"
+#40
+b10 !
+b10 (
+1"
+#45
+0"
+#50
+b11 !
+b11 (
+1"
+b10 &
+#55
+0"
+#60
+b100 !
+b100 (
+1"
+#65
+0"
+#70
+b101 !
+b101 (
+1"
+#75
+0"
+b11 &
+#80
+b110 !
+b110 (
+1"
+#85
+0"
+#90
+b111 !
+b111 (
+1"
+#95
+0"
+#100
+b11001 !
+b11001 (
+1"
+b11001 #
+b11001 '
+1$
+b100 &
+#105
+0"
+#110
+1"
+#115
+0"
+#120
+1"
+#125
+0"
+1%
+b101 &
+#130
+b0 !
+b0 (
+1"
+#135
+0"
+#140
+1"
+#145
+0"
+#150
+b11001 !
+b11001 (
+1"
+0%
+b110 &
+#155
+0"
+#160
+1"
+#165
+0"
+#170
+1"
+#175
+0"
+1%
+b111 &
+#180
+b0 !
+b0 (
+1"
+#185
+0"
+#190
+1"
+#195
+0"
+#200
+1"
+b1000 &
