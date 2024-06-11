@@ -61,10 +61,6 @@ module alu_tb;
     y = 8'b00000001;
     x = 8'b00000100;    
     #25; test_idx++;
-<<<<<<< HEAD
-    $display("Resultado %d SUB %d : %d  carry: %d", x,y,r, fc);
-    $display("--");
-=======
     $display("Resultado %d SUB %d : %d  carry: %d", y, x, r, fc);
     $display("--");
 
@@ -75,7 +71,6 @@ module alu_tb;
     #25; test_idx++;
     $display("Resultado %d SUB %d : %d  carry: %d", y, x, r, fc);
 
->>>>>>> ddf2267 (comentarios alu)
     $display("-- Testbench completed --");
     $finish;
  
