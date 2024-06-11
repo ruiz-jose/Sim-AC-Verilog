@@ -1,9 +1,7 @@
 `include "src/alu.v"
 
-
 // Banco de pruebas para la ALU
 // Este módulo genera varios casos de prueba para la ALU y verifica los resultados.
-// Los casos de prueba incluyen varias combinaciones de operandos y operaciones.
 //
 // Para ejecutar el banco de pruebas, usa el siguiente comando:
 //   make target MOD=alu

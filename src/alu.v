@@ -1,4 +1,3 @@
-
 // ALU (Unidad Aritmética Lógica)
 // Esta ALU es capaz de realizar operaciones de suma y resta.
 // Las operaciones se controlan mediante la señal de control `op`.
@@ -11,12 +10,13 @@
 //        ----------------------------------
 //
 // Entradas:
-//   a, b: operandos de 32 bits
-//   op: señal de control de 1 bit. 0 = suma, 1 = resta
+//   a, b: operandos de 8 bits
+//   op: señal de control de 3 bits. 000 = suma, 001 = resta
 //
 // Salidas:
-//   y: resultado de la operación
-//   overflow: señal de desbordamiento. Se activa si el resultado es demasiado grande para representarlo con 32 bits.
+//   r: resultado de la operación
+//   zero: señal de cero. Se activa si el resultado es cero.
+//   carry: señal de desbordamiento. Se activa si el resultado es demasiado grande para representarlo con 8 bits sin signo.
 
 
 module alu(
