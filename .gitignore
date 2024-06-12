@@ -1,0 +1,3 @@
+# Ignorar archivos .vcd y .vvp
+*.vcd
+*.vvp
