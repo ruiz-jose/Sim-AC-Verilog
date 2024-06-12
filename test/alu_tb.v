@@ -1,11 +1,10 @@
 `include "src/alu.v"
 
-// Banco de pruebas para la ALU
+// Banco de pruebas para la ALU de 8 bits (Unidad Aritmética Lógica)
 // Este módulo genera varios casos de prueba para la ALU y verifica los resultados.
 //
 // Para ejecutar el banco de pruebas, usa el siguiente comando:
-//   make target MOD=alu
-
+// make target MOD=alu
 
 module alu_tb;
   reg [7:0] x = 8'b00000000;  
@@ -29,45 +28,46 @@ module alu_tb;
     // Inicio de Señales
     $display("-- Inicia Simulación --");
     $display("--------------------------------------");
-    $display("--  x  Op  y  Resultado Zero Carry  --");
+    $display("|    x  Op  y  Resultado Zero Carry  |");
     $display("--------------------------------------");
 
     // ADD
     x = 8'b00000001;
     y = 8'b00000001;   
     op = 3'b000;
-    #25; test_idx++; //delay
-    $display("  %d  + %d = %d       %d     %d", x, y, r, fz, fc);
-    $display("--------------------------------------");
+    #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
+    test_idx++;
+    $display("|  %d  + %d = %d       %d     %d    |", x, y, r, fz, fc);
+
 
     // SUB
     x = 7; 
     y = 3;    
     op = 1;   
-    #25; test_idx++;
-    $display("  %d  - %d = %d       %d     %d", x, y, r, fz, fc);
+    #10; test_idx++;
+    $display("|  %d  - %d = %d       %d     %d    |", x, y, r, fz, fc);
  
 
     // SUB y ZERO   
     x = 2;
     y = 2;
     op = 1;    
-    #25; test_idx++;
-    $display("  %d  - %d = %d       %d     %d", x, y, r, fz, fc);
+    #10; test_idx++;
+    $display("|  %d  - %d = %d       %d     %d    |", x, y, r, fz, fc);
 
     // SUB y CARRY   
     x = 3;
     y = 4;  
     op = 1;  
-    #25; test_idx++;
-    $display("  %d  - %d = %d       %d     %d", x, y, r, fz, fc);
+    #10; test_idx++;
+    $display("|  %d  - %d = %d       %d     %d    |", x, y, r, fz, fc);
 
     // ADD, CARRY y ZERO 
     x = 255;
     y = 1;     
     op = 0;   
-    #25; test_idx++;
-    $display("  %d  + %d = %d       %d     %d", x, y, r, fz, fc);
+    #10; test_idx++;
+    $display("|  %d  + %d = %d       %d     %d    |", x, y, r, fz, fc);
     $display("--------------------------------------");
 
     $display("-- Testbench completed --");

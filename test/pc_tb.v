@@ -24,50 +24,58 @@ module pc_tb;
     $dumpfile("bin/pc.vcd");
     $dumpvars(0, pc_tb);
 
-    // Inicio de Señales
+ // Inicio de Señales
     $display("-- Inicia Simulación --");
+    $display("-----------------------------------------------");
+    $display("|            Test   Reset   Jmp   Registro PC |");
+    $display("-----------------------------------------------");
+
 
     // reset
     rst = 1'b1;
-    #25; test_idx++;
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
-
-    // inc
-    rst = 1'b0;
-    #25; test_idx++;
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    jmp_en = 1'b0;
+    #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
+    test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
     
-    // inc
-    #25; test_idx++;
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    // not reset
+    rst = 0;
+    jmp_en = 0;
+    #10; test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
+    
+    #10; test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
 
-    // inc
-    rst = 1'b0;
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    #10; test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
 
     // jump
-    jmp_en = 1'b1;
-    jmp_addr = 5'b11001;  //19h
-    #25; test_idx++;  // addr + 1
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    rst = 0;
+    jmp_en = 1;  // mientras este en 1, el PC se va a mover a la direccion jmp_addr   
+    jmp_addr = 5'b11001;  //19h 25d
+    #10; test_idx++;  // 
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
 
     // reset
-    rst = 1'b1;
-    #25; test_idx++;
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    rst = 1;
+    jmp_en = 0;
+    #10; test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
 
-    // inc
-    rst = 1'b0;
-    #25; test_idx++;
-    $display("%d . Registro PC= %d ",test_idx, curr_addr);
+    // not reset
+    rst = 0;
+    jmp_en = 0;
+    #10; test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
+    
+    #10; test_idx++;
+    $display("|   %d       %d      %d       %d       |", test_idx, rst, jmp_en, curr_addr);
 
-    // reset
-    rst = 1'b1;
-    #25; test_idx++;
-    $display("%d. Registro PC= %d ",test_idx, curr_addr);
+    $display("-----------------------------------------------");
 
-    $finish;
     $display("-- Testbench completed --");
+    $finish;
 
   end
 
