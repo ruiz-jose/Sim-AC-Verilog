@@ -24,7 +24,7 @@ module pc_tb;
     $dumpfile("bin/pc.vcd");
     $dumpvars(0, pc_tb);
 
- // Inicio de Señales
+    // Inicio de Señales
     $display("-- Inicia Simulación --");
     $display("-----------------------------------------------");
     $display("|            Test   Reset   Jmp   Registro PC |");

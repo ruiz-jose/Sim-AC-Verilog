@@ -13,13 +13,14 @@ module rom_tb;
     $dumpfile("bin/rom.vcd");
     $dumpvars(0, rom_tb);
 
-    for (test_idx = 0; test_idx < 8; test_idx++) begin
-      #25;
+    for (test_idx = 0; test_idx < 4; test_idx++) begin
+      #10;
       addr++;
     end
-
-    $finish;
+    
     $display("Testbench completed");
+    $finish;
+
   end
 
 endmodule

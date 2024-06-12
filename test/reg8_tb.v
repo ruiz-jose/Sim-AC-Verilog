@@ -20,26 +20,33 @@ module reg8_tb;
     $dumpfile("bin/reg8.vcd");
     $dumpvars(0, reg8_tb);
 
+     // Inicio de Señales
+    $display("-- Inicia Simulación --");
+    $display("----------------------------------------");
+    $display("|         Test    Write   Registro AC |");
+    $display("----------------------------------------");
+    
     // d should be saved to q
     wen = 1'b1;
     d = 8'b11001100;  // CC o 204
-    #25; test_idx++;
-    $display("Registro AC= %d ", q);
+    #10; test_idx++;
+    $display("|%d        %d         %d     |", test_idx, wen, q);
 
     // d should not be saved to q
     wen = 1'b0;
     d = 8'b11111111;  // FF o 255
-    #25; test_idx++;
-    $display("Registro AC= %d ", q);
+    #10; test_idx++;
+    $display("|%d        %d         %d     |", test_idx, wen, q);
 
     // d should not be saved to q
     wen = 1'b1;
-    d = 8'b11111111;  // FF o 255
-    #25; test_idx++;
-    $display("Registro AC= %d ", q);
+    #10; test_idx++;
+    $display("|%d        %d         %d     |", test_idx, wen, q);
 
+    $display("----------------------------------------");
+
+    $display("-- Testbench completed --");
     $finish;
-    $display("Testbench completed");
   end
 
 endmodule
