@@ -8,9 +8,8 @@
 
 
 module alu_tb;
-
-  reg [7:0] x = 8'b00000000;
-  reg [7:0] y = 8'b00000000;  
+  reg [7:0] x = 8'b00000000;  
+  reg [7:0] y = 8'b00000000;
   reg [2:0] op = 3'b000;
 
   wire fz, fc;
@@ -29,45 +28,47 @@ module alu_tb;
 
     // Inicio de Señales
     $display("-- Inicia Simulación --");
+    $display("--------------------------------------");
+    $display("--  x  Op  y  Resultado Zero Carry  --");
+    $display("--------------------------------------");
 
     // ADD
-    op = 3'b000;
-    y = 8'b00000001;
     x = 8'b00000001;
+    y = 8'b00000001;   
+    op = 3'b000;
     #25; test_idx++; //delay
-    $display("Resultado %d ADD %d : %d", y, x, r);
-    $display("--");
+    $display("  %d  + %d = %d       %d     %d", x, y, r, fz, fc);
+    $display("--------------------------------------");
 
     // SUB
-    op = 3'b001;
-    y = 8'b00000101;
-    x = 8'b00000010;    
+    x = 7; 
+    y = 3;    
+    op = 1;   
     #25; test_idx++;
-    $display("Resultado %d SUB %d : %d", y, x, r);
-    $display("--");
+    $display("  %d  - %d = %d       %d     %d", x, y, r, fz, fc);
+ 
 
-    // ZERO
-    op = 3'b001;
-    y = 8'b00000011;
-    x = 8'b00000011;    
+    // SUB y ZERO   
+    x = 2;
+    y = 2;
+    op = 1;    
     #25; test_idx++;
-    $display("Resultado %d SUB %d : %d  zero: %d", y, x, r, fz);
-    $display("--");
+    $display("  %d  - %d = %d       %d     %d", x, y, r, fz, fc);
 
-    // CARRY
-    op = 3'b001;
-    y = 8'b00000001;
-    x = 8'b00000100;    
+    // SUB y CARRY   
+    x = 3;
+    y = 4;  
+    op = 1;  
     #25; test_idx++;
-    $display("Resultado %d SUB %d : %d  carry: %d", y, x, r, fc);
-    $display("--");
+    $display("  %d  - %d = %d       %d     %d", x, y, r, fz, fc);
 
-    // CARRY
-    op = 3'b000;
-    y = 8'b00000001;
-    x = 8'b11111111;    
+    // ADD, CARRY y ZERO 
+    x = 255;
+    y = 1;     
+    op = 0;   
     #25; test_idx++;
-    $display("Resultado %d SUB %d : %d  carry: %d", y, x, r, fc);
+    $display("  %d  + %d = %d       %d     %d", x, y, r, fz, fc);
+    $display("--------------------------------------");
 
     $display("-- Testbench completed --");
     $finish;
