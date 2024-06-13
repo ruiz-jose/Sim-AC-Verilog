@@ -20,7 +20,7 @@ module reg8_tb;
     $dumpfile("bin/reg8.vcd");
     $dumpvars(0, reg8_tb);
 
-     // Inicio de Señales
+    // Inicio de Señales
     $display("-- Inicia Simulación --");
     $display("----------------------------------------");
     $display("|         Test    Write   Registro AC |");

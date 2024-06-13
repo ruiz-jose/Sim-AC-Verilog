@@ -15,8 +15,9 @@ module ram(
   initial begin
     ram [0] = 8'b00000011; //3
     ram [1] = 8'b00000010; //2
+    ram [2] = 8'b00000100; //4
 
-    for (i = 2; i < 32; i++) begin
+    for (i = 3; i < 32; i++) begin
       ram [i] = 8'b0;
     end
     //-- Los valores deben estan dados en hexadecimal

@@ -24,35 +24,54 @@ module ram_tb;
     $dumpfile("bin/ram.vcd");
     $dumpvars(0, ram_tb);
 
-    #25; test_idx++;
-   
-    addr++;
-    #25; test_idx++;
-
-    wen = 1'b1;
-    din = 8'b00000111;
-    #25; test_idx++;
-
-    wen = 1'b0;
-    din = 8'b00000101;
-    addr++;
-    #25; test_idx++;
-
-    wen = 1'b1;
-    #25; test_idx++;
-
-    wen = 1'b0;
-    #25; test_idx++;
+  // Inicio de Señales
+    $display("-- Inicia Simulación --");
+    $display("--------------------------------------------");
+    $display("|         Test    Addr   Din   Write   Dout|");
+    $display("--------------------------------------------");
+  
+    #10; test_idx++;
+    wen = 0;  // read
+    din = 7;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
 
 
-    addr--;
-    #25; test_idx++;
+    addr++;  // 1
+    #10; test_idx++;
+    din = 7;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
 
-    addr++;
-    #25; test_idx++;
+    wen = 1; // write
+    din = 7;
+    #10; test_idx++;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
 
-    $finish;
+    addr++;  // 2
+    wen = 0;  // read
+    din = 8;
+    #10; test_idx++;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
+
+    wen = 1;  // write
+    #10; test_idx++;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
+
+    wen = 0; // read
+    #10; test_idx++;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
+
+    addr--;  // 1
+    #10; test_idx++;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
+
+    addr--; // 0
+    #10; test_idx++;
+    $display("|%d       %d    %d      %d   %d  |", test_idx, addr, din, wen, dout);
+  
+    $display("--------------------------------------------");
+
     $display("-- Testbench completed --");
+    $finish;
   end
 
 endmodule

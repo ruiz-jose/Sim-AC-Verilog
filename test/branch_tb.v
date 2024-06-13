@@ -7,7 +7,7 @@ module branch_tb;
   reg flag_c = 1'b0;
   reg ctrl_jmp = 1'b0;
 
-  wire branch = 1'b0;
+  wire branch;
 
   integer test_idx = 0;
 
@@ -32,65 +32,66 @@ module branch_tb;
     flag_z = 1'b0;
     flag_c = 1'b0;
     ctrl_jmp = 1'b1;
+    #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
+    test_idx++; 
+    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+   
+    // should not branch; no control line not set
+    op = 3'b100;  // JMP
+    flag_z = 0;
+    flag_c = 0;
+    ctrl_jmp = 0;
+    #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
+    test_idx++;   
     $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
 
-    #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
-    test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
 
     // should not branch; non-branching opcode
     op = 3'b010;  // LDA
-    flag_z = 1'b0;
-    flag_c = 1'b1;
-    ctrl_jmp = 1'b1;
+    flag_z = 0;
+    flag_c = 0;
+    ctrl_jmp = 1;
+    #10; test_idx++;
+    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+
+    // should branch; unconditional JZ
+    op = 3'b101;  // JZ
+    flag_z = 1;
+    flag_c = 0;
+    ctrl_jmp = 1;
     #10; test_idx++;
     $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
 
 
     // should not branch; no control line not set
     op = 3'b101;  // JZ
-    flag_z = 1'b1;
-    flag_c = 1'b0;
-    ctrl_jmp = 1'b0;
+    flag_z = 1;
+    flag_c = 0;
+    ctrl_jmp = 0;
     #10; test_idx++;
     $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
 
-    // should not branch; Z flag set not set for BRZ
-    op = 3'b101;  // BRZ
-    flag_z = 1'b0;
-    flag_c = 1'b0;
-    ctrl_jmp = 1'b1;
+    // should branch; JC and C flag set
+    op = 3'b110;  // JC
+    flag_z = 0;
+    flag_c = 1;
+    ctrl_jmp = 1;
     #10; test_idx++;
     $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
 
-    // should branch; BRC and C flag set
-    op = 3'b101;  // JZ
-    flag_z = 1'b1;
-    flag_c = 1'b0;
-    ctrl_jmp = 1'b1;
-    #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
 
     // should not branch; C flag set not set for JC
     op = 3'b110;  // JC
-    flag_z = 1'b0;
-    flag_c = 1'b0;
-    ctrl_jmp = 1'b1;
+    flag_z = 0;
+    flag_c = 0;
+    ctrl_jmp = 1;
     #10; test_idx++;
     $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
-    
-    // should branch; JC and C flag set
-    op = 3'b110;  // JC
-    flag_z = 1'b0;
-    flag_c = 1'b1;
-    ctrl_jmp = 1'b1;
-    #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
-
+  
 
    $display("--------------------------------------");
-    $display("-- Testbench completed --");
-    $finish;
+   $display("-- Testbench completed --");
+   $finish;
   end
 
 endmodule

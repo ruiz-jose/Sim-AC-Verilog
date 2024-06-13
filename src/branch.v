@@ -8,14 +8,15 @@ module branch(
   output reg branch_o
 );
 
-  reg brc, brz, jmp;
+  reg jmp, brz, brc;
 
   always @(*) begin
+      
     jmp = (op_i[2] & ~op_i[1] & ~op_i[0]);             // JMP = 100
     brz = flag_z_i & (op_i[2] & ~op_i[1] & op_i[0]);   // JZ  = 101
     brc = flag_c_i & (op_i[2] & op_i[1] & ~op_i[0]);   // JC  = 110
 
-    branch_o = (brc | brz | jmp) & ctrl_jmp_i;
+    branch_o = (jmp | brz | brc) & ctrl_jmp_i;
   end
 
 endmodule

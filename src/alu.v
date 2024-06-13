@@ -33,6 +33,7 @@ module alu(
     case(op_i)
       3'b000:  {fc_o, r_o} = x_i + y_i;  // ADD
       3'b001:  {fc_o, r_o} = x_i - y_i;  // SUB
+      3'b010:  r_o = y_i;                // LDA
     endcase
 
     fz_o = (r_o == 8'b0) ? 1'b1 : 1'b0;

@@ -1,31 +1,44 @@
 `include "src/cpu.v"
-
 module cpu_tb;
+  // Declaración de las señales
+  reg clk;
+  reg reset;
+  wire [7:0] bus_aob;
+  wire [4:0] curr_pc;
+  wire [7:0] curr_ins;
 
-  reg clk = 1'b0;
-  reg [4:0] addr = 5'b0;
+  // Instancia del módulo cpu
+  cpu uut (
+    .clk_i(clk),
+    .reset(reset),
+    .reg_acc_out(reg_acc_out), // Conecta la salida del registro acumulador
+    .curr_pc(curr_pc),
+    .curr_ins(curr_ins)
+  );
 
+  // Generación de la señal de reloj
+  always
+    #5 clk = ~clk;
 
-  integer test_idx = 0;
-
-  cpu UUT(.clk_i(clk), .addr_i(addr));
-
-  always begin
-    clk = ~clk; #5;
-  end
-
+  // Inicialización
   initial begin
-    $dumpfile("bin/cpu.vcd");
-    $dumpvars(0, cpu_tb);
-    
-    for (test_idx = 0; test_idx < 32; test_idx++) begin
-       $display("Resultado %d %d %d", UUT.addr_i, UUT.curr_ins, UUT.bus_alu);
-       $display("--");
-      #25;
-    end
-
-    $finish;
-    $display("Testbench completed");
+    clk = 0;
+    reset = 1;
+    #10 reset = 0;
   end
+
+  // Variable de conteo
+  integer count = 0;
+
+  // Impresión de los valores durante los primeros 4 ciclos de reloj
+  always @(posedge clk) begin
+    if (count < 5) begin
+      $display("curr_pc: %h, curr_ins: %h,  reg_acc_out: %h", curr_pc, curr_ins,  reg_acc_out);
+      count = count + 1;
+     end
+      if (count == 5) begin
+        $finish;
+      end
+  end   
 
 endmodule
