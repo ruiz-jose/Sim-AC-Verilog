@@ -8,20 +8,14 @@ module ram(
   output [7:0] dout_o
 );
 
-  reg [7:0] ram [31:0];
+  reg [7:0] ram [0:31];
   integer i;
   
   // clear RAM on start
   initial begin
-    ram [0] = 8'b00000011; //3
-    ram [1] = 8'b00000010; //2
-    ram [2] = 8'b00000100; //4
-
-    for (i = 3; i < 32; i++) begin
-      ram [i] = 8'b0;
-    end
+    $display("Loading RAM...");
     //-- Los valores deben estan dados en hexadecimal
-    //$readmemh("src/data.mem",ram);
+    $readmemh("src/data.mem",ram);
   end
 
   always @(posedge clk_i) begin

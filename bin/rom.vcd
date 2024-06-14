@@ -1,5 +1,5 @@
 $date
-	Thu Jun 13 12:13:24 2024
+	Fri Jun 14 13:37:01 2024
 $end
 $version
 	Icarus Verilog
@@ -44,8 +44,8 @@ b11 #
 b11 "
 b11 $
 #40
-bx !
-bx %
+b0 !
+b0 %
 b100 #
 b100 "
 b100 $

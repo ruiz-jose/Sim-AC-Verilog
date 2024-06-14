@@ -1,5 +1,5 @@
 $date
-	Thu Jun 13 12:05:02 2024
+	Fri Jun 14 14:14:15 2024
 $end
 $version
 	Icarus Verilog
@@ -20,13 +20,11 @@ $var wire 1 # clk_i $end
 $var wire 8 ( din_i [7:0] $end
 $var wire 8 ) dout_o [7:0] $end
 $var wire 1 % wen_i $end
-$var integer 32 * i [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b100000 *
 b11 )
 b0 (
 b0 '

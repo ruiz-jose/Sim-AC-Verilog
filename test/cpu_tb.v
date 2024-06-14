@@ -1,9 +1,10 @@
 `include "src/cpu.v"
+
 module cpu_tb;
   // Declaración de las señales
   reg clk;
   reg reset;
-  wire [7:0] bus_aob;
+  wire [7:0] reg_acc_out;
   wire [4:0] curr_pc;
   wire [7:0] curr_ins;
 
@@ -25,18 +26,33 @@ module cpu_tb;
     clk = 0;
     reset = 1;
     #10 reset = 0;
+
+    // Volcar todas las señales internas de todos los módulos
+    $dumpfile("bin/cpu.vcd");
+    $dumpvars(0, cpu_tb);
+
+
+    // Inicio de Señales
+    $display("-- Inicia Simulación --");
+    $display("------------------------------------------------");
+    $display("|       Test   curr_pc   curr_ins   reg_acc_out|");
+    $display("------------------------------------------------");
   end
 
   // Variable de conteo
-  integer count = 0;
+  integer test_idx = 0;
 
   // Impresión de los valores durante los primeros 4 ciclos de reloj
   always @(posedge clk) begin
-    if (count < 5) begin
-      $display("curr_pc: %h, curr_ins: %h,  reg_acc_out: %h", curr_pc, curr_ins,  reg_acc_out);
-      count = count + 1;
+    #10; // Agrega un pequeño retraso
+    if (test_idx < 5) begin
+      $display("|%d        %h       %h         %h     |", test_idx, curr_pc, curr_ins,  reg_acc_out);
+      test_idx++;
      end
-      if (count == 5) begin
+      if (test_idx == 5) begin
+        $display("------------------------------------------------");
+
+        $display("-- Testbench completed --");
         $finish;
       end
   end   

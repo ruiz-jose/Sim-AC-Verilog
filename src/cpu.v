@@ -13,7 +13,7 @@ module cpu(
   output [4:0] curr_pc,
   output [7:0] curr_ins
 );
-  wire [7:0] bus_ac_mem, bus_alu, bus_mem;
+  wire [7:0] bus_ac_mem, bus_alu, bus_mem, bus_aob;
   wire flag_z, flag_c, pc_load;
   wire ctrl_jmp, ctrl_mw, ctrl_alu;
   // registers
@@ -30,9 +30,6 @@ module cpu(
 
   // assign bus values  
   assign bus_ac_mem = (ctrl_mw) ? bus_aob : bus_alu;
-
-  /*always @(*) begin
-    reg_acc_out <= bus_aob;
-  end*/
+  assign reg_acc_out = bus_aob; 
 
 endmodule
