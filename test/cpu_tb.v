@@ -15,7 +15,7 @@ module cpu_tb;
   // Instancia del módulo cpu
   cpu uut (
     .clk_i(clk),
-    .reset(reset),
+    .reset_i(reset),
     .reg_acc_o(reg_acc_o), // Conecta la salida del registro acumulador
     .reg_SW_o(reg_SW_o),
     .curr_pc(curr_pc_o),
