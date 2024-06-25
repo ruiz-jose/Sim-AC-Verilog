@@ -21,7 +21,7 @@ module cpu(
 );
   wire [7:0] bus_ac_mem, bus_alu, bus_mem, bus_aob;
   wire pc_load;
-  wire ctrl_jmp, ctrl_wm, ctrl_wf, ctrl_alu;
+  wire ctrl_jmp, ctrl_wm, ctrl_wf, ctrl_alu, ctrl_ldi, ctrl_wr;
   wire [1:0] flags, bus_sw;
 
   // registers
@@ -31,7 +31,7 @@ module cpu(
 
   // top level modules
   rom rom(.addr_i(curr_pc), .data_o(curr_ins));
-  ctrlunit ctrlunit(.op_i(curr_ins[7:5]), .jmp_o(ctrl_jmp), .wr_o(ctrl_wr), .wm_o(ctrl_wm),.wf_o(ctrl_wf), .alu_o(ctrl_alu));
+  ctrlunit ctrlunit(.op_i(curr_ins[7:5]), .jmp_o(ctrl_jmp), .wr_o(ctrl_wr), .wm_o(ctrl_wm),.wf_o(ctrl_wf), .alu_o(ctrl_alu), .ldi_o(ctrl_ldi));
 
   branch branch(.op_i(curr_ins[7:5]), .flags_i(bus_sw), .ctrl_jmp_i(ctrl_jmp), .branch_o(pc_load));
   ram ram(.clk_i(clk_i), .wen_i(ctrl_wm), .din_i(bus_ac_mem), .addr_i(curr_ins[4:0]), .dout_o(bus_mem));
@@ -39,6 +39,7 @@ module cpu(
 
   // assign bus values  
   assign bus_ac_mem = (ctrl_wm) ? bus_aob : bus_alu;
+  //assign bus_mem = (ctrl_ldi) ? {3'b0, curr_ins[4:0]} : bus_mem;
 
   // assign outputs
   assign reg_acc_o = bus_aob; 
