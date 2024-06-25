@@ -11,7 +11,11 @@ module cpu(
   input reset,
   output [7:0] reg_acc_out,
   output [4:0] curr_pc,
-  output [7:0] curr_ins
+  output [7:0] curr_ins,
+  output [7:0] bus_alu_out,
+  output [7:0] bus_ram_out,
+  output wr_o, wm_o
+
 );
   wire [7:0] bus_ac_mem, bus_alu, bus_mem, bus_aob;
   wire flag_z, flag_c, pc_load;
@@ -31,5 +35,10 @@ module cpu(
   // assign bus values  
   assign bus_ac_mem = (ctrl_mw) ? bus_aob : bus_alu;
   assign reg_acc_out = bus_aob; 
+  assign bus_alu_out = bus_alu; 
+  assign bus_ram_out = bus_mem; 
+  assign wr_o = ctrl_wr; 
+  assign wm_o = ctrl_wm; 
+  
 
 endmodule

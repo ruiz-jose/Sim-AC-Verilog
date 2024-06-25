@@ -7,6 +7,9 @@ module cpu_tb;
   wire [7:0] reg_acc_out;
   wire [4:0] curr_pc;
   wire [7:0] curr_ins;
+  wire [7:0] bus_alu_out;
+  wire [7:0] bus_ram_out;
+  wire wr_o, wm_o;
 
   // Instancia del módulo cpu
   cpu uut (
@@ -14,7 +17,11 @@ module cpu_tb;
     .reset(reset),
     .reg_acc_out(reg_acc_out), // Conecta la salida del registro acumulador
     .curr_pc(curr_pc),
-    .curr_ins(curr_ins)
+    .curr_ins(curr_ins),
+    .bus_alu_out(bus_alu_out),
+    .bus_ram_out(bus_ram_out),
+    .wr_o(wr_o),
+    .wm_o(wm_o)
   );
 
   // Generación de la señal de reloj
@@ -34,9 +41,9 @@ module cpu_tb;
 
     // Inicio de Señales
     $display("-- Inicia Simulación --");
-    $display("------------------------------------------------");
-    $display("|       Test   curr_pc   curr_ins   reg_acc_out|");
-    $display("------------------------------------------------");
+    $display("-----------------------------------------------");
+    $display("|       Test  PC  ROM  |Wr Ac| R_alu  |Wm RAM||");
+    $display("-----------------------------------------------");
   end
 
   // Variable de conteo
@@ -46,11 +53,11 @@ module cpu_tb;
   always @(posedge clk) begin
     #10; // Agrega un pequeño retraso
     if (test_idx < 5) begin
-      $display("|%d        %h       %h         %h     |", test_idx, curr_pc, curr_ins,  reg_acc_out);
+      $display("|%d  %h   %h   %h  %h    %h    %h  %h  |", test_idx, curr_pc, curr_ins, wr_o, reg_acc_out, bus_alu_out, wm_o, bus_ram_out);
       test_idx++;
      end
       if (test_idx == 5) begin
-        $display("------------------------------------------------");
+        $display("-----------------------------------------------");
 
         $display("-- Testbench completed --");
         $finish;
