@@ -15,7 +15,7 @@ module ram(
   initial begin
     $display("Loading RAM...");
     //-- Los valores deben estan dados en hexadecimal
-    $readmemh("src/data.mem",ram);
+    $readmemh(`DATA_MEM,ram);
   end
 
   always @(posedge clk_i) begin
