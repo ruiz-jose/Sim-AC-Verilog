@@ -9,7 +9,7 @@ module rom(
 
   initial begin
     $display("Loading ROM...");
-    $readmemh("src/rom.mem", memory);
+    $readmemh("src/rom_ej_2.mem", memory);
   end
 
   always @(*) begin

@@ -11,14 +11,14 @@ module alu_tb;
   reg [7:0] y = 8'b00000000;
   reg [2:0] op = 3'b000;
 
-  wire fz, fc;
+  wire [1:0] flags;
   wire [7:0] r;
 
   integer test_idx = 0;
 
   alu UUT(
     .x_i(x), .y_i(y), .op_i(op), 
-    .r_o(r), .fz_o(fz), .fc_o(fc)
+    .r_o(r), .flags_o(flags)
   );
 
   initial begin
@@ -28,7 +28,7 @@ module alu_tb;
     // Inicio de Señales
     $display("-- Inicia Simulación --");
     $display("--------------------------------------");
-    $display("|    x  Op  y  Resultado Zero Carry  |");
+    $display("|    x  Op  y  Resultado Carry Zero  |");
     $display("--------------------------------------");
 
     // ADD
@@ -37,7 +37,7 @@ module alu_tb;
     op = 3'b000;
     #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
     test_idx++;
-    $display("|  %d  + %d = %d       %d     %d    |", x, y, r, fz, fc);
+    $display("|  %d  + %d = %d        %b    %b    |", x, y, r, flags[1], flags[0]);
 
 
     // SUB
@@ -45,7 +45,7 @@ module alu_tb;
     y = 3;    
     op = 1;   
     #10; test_idx++;
-    $display("|  %d  - %d = %d       %d     %d    |", x, y, r, fz, fc);
+    $display("|  %d  - %d = %d        %b    %b    |", x, y, r, flags[1], flags[0]);
  
 
     // SUB y ZERO   
@@ -53,21 +53,21 @@ module alu_tb;
     y = 2;
     op = 1;    
     #10; test_idx++;
-    $display("|  %d  - %d = %d       %d     %d    |", x, y, r, fz, fc);
+    $display("|  %d  - %d = %d        %b    %b    |", x, y, r, flags[1], flags[0]);
 
     // SUB y CARRY   
     x = 3;
     y = 4;  
     op = 1;  
     #10; test_idx++;
-    $display("|  %d  - %d = %d       %d     %d    |", x, y, r, fz, fc);
+    $display("|  %d  - %d = %d        %b    %b    |", x, y, r, flags[1], flags[0]);
 
     // ADD, CARRY y ZERO 
     x = 255;
     y = 1;     
     op = 0;   
     #10; test_idx++;
-    $display("|  %d  + %d = %d       %d     %d    |", x, y, r, fz, fc);
+    $display("|  %d  + %d = %d        %b    %b    |", x, y, r, flags[1], flags[0]);
     $display("--------------------------------------");
 
     $display("-- Testbench completed --");

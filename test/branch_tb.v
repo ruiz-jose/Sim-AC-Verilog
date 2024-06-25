@@ -3,8 +3,7 @@
 module branch_tb;
 
   reg [2:0] op = 3'b000;
-  reg flag_z = 1'b0;
-  reg flag_c = 1'b0;
+  reg [1:0]flags = 2'b00;
   reg ctrl_jmp = 1'b0;
 
   wire branch;
@@ -12,7 +11,7 @@ module branch_tb;
   integer test_idx = 0;
 
   branch UUT(
-    .op_i(op), .flag_z_i(flag_z), .flag_c_i(flag_c),
+    .op_i(op), .flags_i(flags),
     .ctrl_jmp_i(ctrl_jmp), .branch_o(branch)
   );
 
@@ -24,69 +23,59 @@ module branch_tb;
     // Inicio de Señales
     $display("-- Inicia Simulación --");
     $display("--------------------------------------");
-    $display("|  Op  Zero  Carry  ctrl_jmp  branch |");
+    $display("|  Op  Carry  Zero  ctrl_jmp  branch |");
     $display("--------------------------------------");
 
     // should branch; unconditional jump
     op = 3'b100;  // JMP
-    flag_z = 1'b0;
-    flag_c = 1'b0;
+    flags = 2'b00;
     ctrl_jmp = 1'b1;
     #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
     test_idx++; 
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
    
     // should not branch; no control line not set
     op = 3'b100;  // JMP
-    flag_z = 0;
-    flag_c = 0;
     ctrl_jmp = 0;
     #10;  // delay de 10 unidades de tiempo (tiempo de reloj)
     test_idx++;   
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
 
 
     // should not branch; non-branching opcode
     op = 3'b010;  // LDA
-    flag_z = 0;
-    flag_c = 0;
     ctrl_jmp = 1;
     #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
 
     // should branch; unconditional JZ
     op = 3'b101;  // JZ
-    flag_z = 1;
-    flag_c = 0;
+    flags = 2'b01;
     ctrl_jmp = 1;
     #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
 
 
     // should not branch; no control line not set
     op = 3'b101;  // JZ
-    flag_z = 1;
-    flag_c = 0;
     ctrl_jmp = 0;
     #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
 
     // should branch; JC and C flag set
     op = 3'b110;  // JC
-    flag_z = 0;
-    flag_c = 1;
+    flags = 2'b10;
     ctrl_jmp = 1;
     #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
 
 
     // should not branch; C flag set not set for JC
     op = 3'b110;  // JC
-    flag_z = 0;
-    flag_c = 0;
+    flags = 2'b00;
     ctrl_jmp = 1;
     #10; test_idx++;
-    $display("|   %d    %d     %d        %d        %d   |", op, flag_z, flag_c, ctrl_jmp, branch);
+    $display("|   %d    %b     %b        %d        %d   |", op, flags[1], flags[0], ctrl_jmp, branch);
   
 
    $display("--------------------------------------");

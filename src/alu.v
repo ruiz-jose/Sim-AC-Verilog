@@ -23,20 +23,17 @@ module alu(
   input [7:0] y_i,
   input [2:0] op_i,
   output reg [7:0] r_o,
-  output reg fz_o,
-  output reg fc_o
+  output reg [1:0] flags_o // flags_o[0] = fz, flags_o[1] = fc
 );
 
   always @(*) begin
-    fc_o = 1'b0;
-
     case(op_i)
-      3'b000:  {fc_o, r_o} = x_i + y_i;  // ADD
-      3'b001:  {fc_o, r_o} = x_i - y_i;  // SUB
-      3'b010:  r_o = y_i;                // LDA
+      3'b000:  {flags_o[1], r_o} = x_i + y_i;  // ADD
+      3'b001:  {flags_o[1], r_o} = x_i - y_i;  // SUB
+      3'b010:  r_o = y_i;                      // LDA
     endcase
+    flags_o[0] = (r_o == 8'b0) ? 1'b1 : 1'b0; // fz
 
-    fz_o = (r_o == 8'b0) ? 1'b1 : 1'b0;
   end
 
 endmodule
