@@ -19,9 +19,10 @@ module cpu(
   output wr_o, wm_o
 
 );
-  wire [7:0] bus_ac_mem, bus_alu, bus_mem, bus_aob, bus_sw;
-  wire flag_z, flag_c, pc_load;
+  wire [7:0] bus_ac_mem, bus_alu, bus_mem, bus_aob;
+  wire pc_load;
   wire ctrl_jmp, ctrl_wm, ctrl_wf, ctrl_alu;
+  wire [1:0] flags, bus_sw;
 
   // registers
   reg8 reg_acc(.clk_i(clk_i), .rst_i(reset), .wen_i(ctrl_wr), .d_i(bus_alu), .q_o(bus_aob));

@@ -1,4 +1,4 @@
-# Sim-AC-Fpga
+# Sim-AC-Verilog
 
 Una CPU basada en acumulador de 8 bits diseñada para hacer lo mínimo y nada más.
 
