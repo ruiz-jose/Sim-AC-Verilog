@@ -10,13 +10,16 @@
 //        ----------------------------------
 //
 // Entradas:
-//   a, b: operandos de 8 bits
-//   op: señal de control de 3 bits. 000 = suma, 001 = resta
+// - x_i: Primer operando de 8 bits.
+// - y_i: Segundo operando de 8 bits.
+// - op_i: Código de operación de 3 bits que determina la operación a realizar.
+//
 //
 // Salidas:
-//   r: resultado de la operación
-//   zero: señal de cero. Se activa si el resultado es cero.
-//   carry: señal de desbordamiento. Se activa si el resultado es demasiado grande para representarlo con 8 bits sin signo.
+// - r_o: Resultado de 8 bits de la operación.
+// - flags_o: Banderas de estado resultantes de la operación (carry, zero).
+//    - zero: señal de cero. Se activa si el resultado es cero.
+//    - carry: señal de desbordamiento. Se activa si el resultado es demasiado grande para representarlo con 8 bits sin signo.
 
 module alu(
   input [7:0] x_i, // 8-bit input x

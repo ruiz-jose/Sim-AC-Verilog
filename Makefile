@@ -21,7 +21,7 @@ setup:
 target: clean setup
 	@mkdir -p $(OUT)
 	@echo "Compilando y simulando $(MOD) con el ejemplo $(EJ)"
-	$(COMPILE) "$(TEST)/$(MOD)_tb.v" src -o "$(OUT)/$(MOD).vvp"  -I $(SRC) -DROM_MEM=\"$(EXAMPLE)/rom_$(EJ).mem\" -DDATA_MEM=\"$(EXAMPLE)/data_$(EJ).mem\"
+	$(COMPILE) "$(TEST)/$(MOD)_tb.v" $(SRC) -o "$(OUT)/$(MOD).vvp"  -I $(SRC) -DROM_MEM=\"$(EXAMPLE)/rom_$(EJ).mem\" -DDATA_MEM=\"$(EXAMPLE)/data_$(EJ).mem\"
 	$(SIMULATE) -n "$(OUT)/$(MOD).vvp"
 
 #view:
