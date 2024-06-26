@@ -1,6 +1,6 @@
 /* 2-bit register Status Word*/
 
-module regSW(
+module regsw(
   input clk_i,
   input wen_i,
   input rst_i,

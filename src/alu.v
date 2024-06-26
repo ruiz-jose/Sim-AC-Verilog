@@ -30,7 +30,7 @@ module alu(
     case(op_i)
       3'b000:  {flags_o[1], r_o} = x_i + y_i;  // ADD
       3'b001:  {flags_o[1], r_o} = x_i - y_i;  // SUB
-      3'b010:  r_o = y_i;                      // LDA
+      3'b010, 3'b111: r_o = y_i;               // LDA, LDI
     endcase
     flags_o[0] = (r_o == 8'b0) ? 1'b1 : 1'b0; // fz
 

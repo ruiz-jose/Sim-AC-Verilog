@@ -1,4 +1,4 @@
-`include "src/regSW.v"
+`include "src/regsw.v"
 
 module regSW_tb;
 
@@ -18,8 +18,8 @@ module regSW_tb;
   end
 
   initial begin
-    $dumpfile("bin/regSW.vcd");
-    $dumpvars(0, regSW_tb);
+    $dumpfile("bin/regsw.vcd");
+    $dumpvars(0, regsw_tb);
 
     // Inicio de Señales
     $display("-- Inicia Simulación --");

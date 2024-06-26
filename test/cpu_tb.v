@@ -5,7 +5,7 @@ module cpu_tb;
   reg clk;
   reg reset;
   wire [7:0] reg_acc_o;
-  wire [1:0] reg_SW_o;
+  wire [1:0] reg_sw_o;
   wire [4:0] curr_pc_o, addr_o;
   wire [7:0] curr_ins_o;
   wire [7:0] bus_alu_o;
@@ -17,7 +17,7 @@ module cpu_tb;
     .clk_i(clk),
     .reset_i(reset),
     .reg_acc_o(reg_acc_o), // Conecta la salida del registro acumulador
-    .reg_SW_o(reg_SW_o),
+    .reg_sw_o(reg_sw_o),
     .curr_pc(curr_pc_o),
     .curr_ins(curr_ins_o),
     .addr_o(addr_o),
@@ -56,7 +56,7 @@ module cpu_tb;
   always @(posedge clk) begin
     #10;
     if (test_idx < 5) begin
-      $display("|%d  %h   %h   %h  %h    %h  %h   %h     %h   %b  %b |", test_idx, curr_pc_o, curr_ins_o, wr_o, reg_acc_o, wm_o, addr_o, bus_ram_o, bus_alu_o, reg_SW_o[1], reg_SW_o[0]);
+      $display("|%d  %h   %h   %h  %h    %h  %h   %h     %h   %b  %b |", test_idx, curr_pc_o, curr_ins_o, wr_o, reg_acc_o, wm_o, addr_o, bus_ram_o, bus_alu_o, reg_sw_o[1], reg_sw_o[0]);
       test_idx++;
      end
       if (test_idx == 5) begin
